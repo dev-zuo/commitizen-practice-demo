@@ -62,6 +62,14 @@ git commit --amend -m 'feat(version):version to 0.2.0' # commit 信息不对，�
 ```
 npm version 时加上比较好的注释试试
 ```bash
+zuo@zmac comitizen-practice-demo % npm version 0.4.0 -m 'feat(version):0.4.0 tag remark'
+v0.4.0
+zuo@zmac comitizen-practice-demo % git log
+commit 0fdcd82353f3907c4a31e470402b6dce743b4b11 (HEAD -> main, tag: v0.4.0)
+Author: zuoxiaobai <guoqzuo@gmail.com>
+Date:   Fri Oct 15 06:58:20 2021 +0800
+
+    feat(version):0.4.0 tag remark
 ```
 ## Project setup
 ```
