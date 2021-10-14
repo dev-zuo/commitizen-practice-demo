@@ -53,6 +53,7 @@ $ npm install -g conventional-changelog-cli
 $ cd my-project
 $ conventional-changelog -p angular -i CHANGELOG.md -s
 ```
+注意：默认版本是 package.json 中的 version 参数: "version": "0.1.0", 如果版本变更，需要使用 npm version '版本号'，修改版本号，再生成
 
 ## Project setup
 ```
