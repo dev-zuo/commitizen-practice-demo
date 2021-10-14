@@ -54,7 +54,15 @@ $ cd my-project
 $ conventional-changelog -p angular -i CHANGELOG.md -s
 ```
 注意：默认版本是 package.json 中的 version 参数: "version": "0.1.0", 如果版本变更，需要使用 npm version '版本号'，修改版本号，再生成
-
+```bash
+npm version 0.2.0 # 修改 package.json 版本号，并打一个 tag，待 push，commit 信息 0.0.2
+git push origin --tags # push tags
+git commit --amend -m 'feat(version):version to 0.2.0' # commit 信息不对，导致生成 log 有问题，需要修改
+# 修上次提交记录，把 0.2.0 改为标准格式再生成，就可以生成 change log 了
+```
+npm version 时加上比较好的注释试试
+```bash
+```
 ## Project setup
 ```
 npm install

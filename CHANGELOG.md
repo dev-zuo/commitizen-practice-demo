@@ -1,3 +1,12 @@
+# [0.3.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v0.2.0...v0.3.0) (2021-10-14)
+
+
+### Features
+
+* **version:** update to v0.3.0 ([d1ac45a](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/d1ac45aca7ec8dba15f7b20fc2b486b472d14434))
+
+
+
 # 0.2.0 (2021-10-14)
 
 
