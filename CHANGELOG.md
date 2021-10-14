@@ -1,4 +1,4 @@
-# 0.1.0 (2021-10-14)
+# 0.2.0 (2021-10-14)
 
 
 ### Bug Fixes
@@ -10,6 +10,7 @@
 ### Features
 
 * **test:** test feat type commit ([8a2375a](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/8a2375a40a6cc7c5c1984803dabfcc6d68f4d974))
+* **version:** changelog version test ([cca8adf](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/cca8adf9b92a033e9edf25d434e312761eed855d))
 
 
 ### BREAKING CHANGES
