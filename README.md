@@ -104,6 +104,14 @@ commitizen hooks
   }
 }
 ```
+```bash
+npx husky add .husky/pre-commit "npm test"
+git add .husky/pre-commit
+
+npx husky add .husky/prepare-commit-msg "exec < /dev/tty && git cz --hook || true"
+git add .husky/prepare-commit-msg
+# 查看当前目录 .husky 是否有生成 pre-commit, prepare-commit-msg 文件
+```
 ## Project setup
 ```
 npm install
