@@ -70,6 +70,39 @@ Author: zuoxiaobai <guoqzuo@gmail.com>
 Date:   Fri Oct 15 06:58:20 2021 +0800
 
     feat(version):0.4.0 tag remark
+
+# 再次生成 changelog 又不行了，空白
+```
+
+## 使用 standard-version 
+```bash
+npm install standard-version --save-dev
+```
+
+## husk 校验
+```bash
+npm install husky --save-dev
+```
+安装 husky git hooks
+```js
+// package.json
+{
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
+```
+```bash
+npm run prepare
+# husky - Git hooks installed
+```
+commitizen hooks
+```js
+"husky": {
+  "hooks": {
+    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+  }
+}
 ```
 ## Project setup
 ```
