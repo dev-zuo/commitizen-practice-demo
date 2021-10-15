@@ -107,10 +107,21 @@ commitizen hooks
 ```bash
 npx husky add .husky/pre-commit "npm test"
 git add .husky/pre-commit
+# 如果需要删除，直接 删除 .husky/pre-commit 文件即可
 
+# 没有用，该提交的还是提交了。只是提交前，会自己运行 git cz
 npx husky add .husky/prepare-commit-msg "exec < /dev/tty && git cz --hook || true"
 git add .husky/prepare-commit-msg
 # 查看当前目录 .husky 是否有生成 pre-commit, prepare-commit-msg 文件
+```
+
+## commitlint
+```bash
+npm install -g @commitlint/cli @commitlint/config-conventional
+# Configure commitlint to use conventional config
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
 ## Project setup
 ```
