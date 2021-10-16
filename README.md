@@ -75,10 +75,33 @@ Date:   Fri Oct 15 06:58:20 2021 +0800
 ```
 
 ## 使用 standard-version 
+上面的例子中，npm run version 更新版本号会直接提交，导致且 commit 信息就是版本号，不符合 commitizen 规范。导致手动生成 log 时，会是空白。[standard-version](https://github.com/conventional-changelog/standard-version) 就很好的解决了这个问题。安装后，只需要 npm run release，就可以有 npm run version 的功能，而且提交信息是标准的 commitizen 规范，而且自动生成 changelog 自动打 tag，自动 commit。你只需要 push 即可。
 ```bash
 npm install standard-version --save-dev
 ```
+scripts 设置
+```js
+// scripts
+"release": "standard-version"
+```
 
+```bash
+zuo@zmac comitizen-practice-demo % npm run release
+
+> comitizen-practice-demo@0.4.1 release /Users/zuo/Desktop/fecloe/comitizen-practice-demo
+> standard-version
+
+✔ bumping version in package.json from 0.4.1 to 0.4.2
+✔ bumping version in package-lock.json from 0.4.1 to 0.4.2
+✔ created CHANGELOG.md
+✔ outputting changes to CHANGELOG.md
+✔ committing package-lock.json and package.json and CHANGELOG.md
+✔ tagging release v0.4.2
+ℹ Run `git push --follow-tags origin main` to publish
+zuo@zmac comitizen-practice-demo %
+```
+
+需要注意的是，CHANGELOG.md 是追加写入内容的，如果你之前没有对应的内容或删了之前的内容，会导致生成的内容较少，或者不完整。
 ## husk 校验
 ```bash
 npm install husky --save-dev
