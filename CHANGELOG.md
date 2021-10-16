@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v2.1.3-alpha.1...v2.2.0) (2021-10-16)
+
+
+### Features
+
+* **docs:** update readme.md ([fb7e0e3](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/fb7e0e3f659b3d48df7a62c05167f9e4d085e71d))
+
 ### [2.1.3-alpha.1](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v2.0.0-0...v2.1.3-alpha.1) (2021-10-16)
 
 ## [2.0.0-0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v1.1.0-0...v2.0.0-0) (2021-10-16)
