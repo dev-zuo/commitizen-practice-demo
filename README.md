@@ -47,6 +47,57 @@ Date:   Thu Oct 14 07:17:31 2021 +0800
 feat(test): test feat type commit
 ```
 
+## husky + commitlint 提交校验
+commitlint[https://github.com/conventional-changelog/commitlint] 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
+
+### husk 安装
+1. 安装 husky
+
+```bash
+npm install husky --save-dev
+```
+
+2. 安装 husky git hooks
+
+```bash
+# 方法1：
+npx husky install
+# 方法2：配置 package.json, scripts："prepare": "husky install"
+npm run prepare
+
+# husky - Git hooks installed
+```
+3. 测试 husky 钩子作用，添加 pre-commit 钩子
+```bash
+npx husky add .husky/pre-commit "npm test"
+# 查看当前目录 .husky 目录是否有生成 pre-commit 文件
+# 如果需要删除这个钩子，直接 删除 .husky/pre-commit 文件即可
+```
+### commitlint 安装配置
+```bash
+npm install -g @commitlint/cli @commitlint/config-conventional
+# Configure commitlint to use conventional config
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+
+npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
+```
+测试
+```bash
+git add .
+git commit -m 'xx'
+zuo@zmac comitizen-practice-demo % git commit -m 'xxx'
+# ⧗   input: xxx
+# ✖   subject may not be empty [subject-empty]
+# ✖   type may not be empty [type-empty]
+
+# ✖   found 2 problems, 0 warnings
+# ⓘ   Get help: https://github.com/conventional-changelog/commitlint/#what-is-commitlint
+
+# husky - commit-msg hook exited with code 1 (error)
+# zuo@zmac comitizen-practice-demo % 
+```
+提示缺少 subject 就是提交信息、type 就是提交类型，按照规范提交就 ok 了
+
 ## changelog 自动生成
 ```
 $ npm install -g conventional-changelog-cli
@@ -126,53 +177,10 @@ npm run release -- --release-as 2.1.3-alpha.1 # 2.0.0-0 to 2.1.3-alpha.1
 # ✔ bumping version in package.json from 2.0.0-0 to 2.1.3-alpha.1
 # ✔ bumping version in package-lock.json from 2.0.0-0 to 2.1.3-alpha.1
 # ✔ tagging release v2.1.3-alpha.1
+
+npm run release # 2.1.3-alpha.1 to 2.2.0
 ```
 The newversion argument should be a valid semver string, a valid second argument to [semver.inc](https://github.com/npm/node-semver#functions) (one of patch, minor, major, prepatch, preminor, premajor,
-## husk 校验
-```bash
-npm install husky --save-dev
-```
-安装 husky git hooks
-```js
-// package.json
-{
-  "scripts": {
-    "prepare": "husky install"
-  }
-}
-```
-```bash
-npm run prepare
-# husky - Git hooks installed
-```
-commitizen hooks
-```js
-"husky": {
-  "hooks": {
-    "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-  }
-}
-```
-```bash
-npx husky add .husky/pre-commit "npm test"
-git add .husky/pre-commit
-# 如果需要删除，直接 删除 .husky/pre-commit 文件即可
-
-# 没有用，该提交的还是提交了。只是提交前，会自己运行 git cz
-npx husky add .husky/prepare-commit-msg "exec < /dev/tty && git cz --hook || true"
-git add .husky/prepare-commit-msg
-# 查看当前目录 .husky 是否有生成 pre-commit, prepare-commit-msg 文件
-```
-
-## commitlint
-commitlint[https://github.com/conventional-changelog/commitlint] 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
-```bash
-npm install -g @commitlint/cli @commitlint/config-conventional
-# Configure commitlint to use conventional config
-echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
-
-npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
-```
 ## Project setup
 ```
 npm install
