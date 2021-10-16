@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [0.4.1](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v0.4.0...v0.4.1) (2021-10-16)
+
+
+### Features
+
+* update readme, add husky + commmit lint hoosk ([d45fe3c](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/d45fe3c6b19d167f1caf3cae025856b2b3409f94))
+
+
+### Bug Fixes
+
+* **docs:** update docs ([7836ccf](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/7836ccf9b7bb42dfbb4ba1637a0797e324605373))
+
 # [0.3.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v0.2.0...v0.3.0) (2021-10-14)
 
 
@@ -25,6 +41,3 @@
 ### BREAKING CHANGES
 
 * **test:** has branking changes info test
-
-
-
