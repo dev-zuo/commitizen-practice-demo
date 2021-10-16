@@ -99,9 +99,35 @@ zuo@zmac comitizen-practice-demo % npm run release
 ✔ tagging release v0.4.2
 ℹ Run `git push --follow-tags origin main` to publish
 zuo@zmac comitizen-practice-demo %
+# git push
+# git push --tags
 ```
 
 需要注意的是，CHANGELOG.md 是追加写入内容的，如果你之前没有对应的内容或删了之前的内容，会导致生成的内容较少，或者不完整。
+
+### release 特定版本
+```bash
+# 0.4.1
+npm run release # 0.4.1 => 0.4.2
+npm run release -- --prerelease # 0.4.2 to 0.4.3-0
+npm run release # 0.4.3-0 to 0.4.3
+npm run release -- --prerelease alpha # 0.4.3 to 0.4.4-alpha.0
+
+# patch、minor、major
+npm run release -- --release-as minor  # 0.4.4-alpha.0 to 0.5.0
+npm run release -- --release-as patch # 0.5.0 to 0.5.1
+npm run release -- --release-as major # 0.5.1 to 1.0.0
+npm run release -- --release-as prepatch # 1.0.0 to 1.0.1-0
+npm run release -- --release-as preminor # 1.0.1-0 to 1.1.0-0
+npm run release -- --release-as premajor # 1.1.0-0 to 2.0.0-0
+
+# 手动指定版本
+npm run release -- --release-as 2.1.3-alpha.1 # 2.0.0-0 to 2.1.3-alpha.1
+# ✔ bumping version in package.json from 2.0.0-0 to 2.1.3-alpha.1
+# ✔ bumping version in package-lock.json from 2.0.0-0 to 2.1.3-alpha.1
+# ✔ tagging release v2.1.3-alpha.1
+```
+The newversion argument should be a valid semver string, a valid second argument to [semver.inc](https://github.com/npm/node-semver#functions) (one of patch, minor, major, prepatch, preminor, premajor,
 ## husk 校验
 ```bash
 npm install husky --save-dev
@@ -139,6 +165,7 @@ git add .husky/prepare-commit-msg
 ```
 
 ## commitlint
+commitlint[https://github.com/conventional-changelog/commitlint] 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
 ```bash
 npm install -g @commitlint/cli @commitlint/config-conventional
 # Configure commitlint to use conventional config
