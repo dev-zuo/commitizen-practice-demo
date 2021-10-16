@@ -12,25 +12,65 @@ vue create comitizen-practice-demo
 ```
 
 ## commitizen 使用
+
+[commitizen](https://github.com/commitizen/cz-cli) 是一个 cli 工具，用于规范化 git commit 信息，可以代替 git commit
+
 ```bash
 npm install -g commitizen cz-conventional-changelog  # 安装规范化提交插件
 echo '{"path": "cz-conventional-changelog"}' > ~/.czrc # 配置
 git cz 
-# ? Select the type of change that you're committing: (Use arrow keys)
-# ❯ feat:     A new feature 
-#   fix:      A bug fix 
-#   docs:     Documentation only changes 
-#   style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) 
-#   refactor: A code change that neither fixes a bug nor adds a feature 
-#   perf:     A code change that improves performance 
-#   test:     Adding missing tests or correcting existing tests 
-#   build:    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) 
-#   ci:       Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) 
-#   chore:    Other changes that don't modify src or test files 
-#   revert:   Reverts a previous commit 
+# ? Select the type of change that you're committing: docs:     Documentation only changes
+# ? What is the scope of this change (e.g. component or file name): (press enter to skip) readme
+# ? Write a short, imperative tense description of the change (max 86 chars):
+# (46) update readme.md, add init project description
+# ? Provide a longer description of the change: (press enter to skip) 
+
+# ? Are there any breaking changes? No
+# ? Does this change affect any open issues? No
+# [main caae82e] docs(readme): update readme.md, add init project description
+# 1 file changed, 7 insertions(+)
+# zuo@zmac comitizen-practice-demo % 
 ```
 
-### docs 类型提交
+![git_cz.png](./docImages/git_cz.png)
+
+如图，git cz 运行后，会有如下 6 个步骤
+
+### 1.选择提交类型(必填)
+
+Select the type of change that you're committing: (Use arrow keys)
+
+类型 | 描述
+--- | ---
+feat |     A new feature 
+fix |    A bug fix 
+docs |    Documentation only changes 
+style |    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) 
+refactor | A code change that neither fixes a bug nor adds a feature 
+perf |     A code change that improves performance 
+test |    Adding missing tests or correcting existing tests 
+build |    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) 
+ci |       Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) 
+chore |    Other changes that don't modify src or test files 
+revert |   Reverts a previous commit 
+
+### 2.选择 scope 模块名(选填)
+What is the scope of this change (e.g. component or file name): (press enter to skip) 
+
+### 3.填写精炼的提交信息(必填)
+Write a short, imperative tense description of the change (max 86 chars):
+
+### 4.填写补充信息(选填)
+Provide a longer description of the change: (press enter to skip) 
+
+### 5.选择是否有破坏性更新(默认no)
+Are there any breaking changes?
+
+### 6.是否关联是 open 状态的 issue(默认no)
+Does this change affect any open issues?
+
+可以关闭 github issue，**但注意 commit 信息里面的末尾也要加 '(#issue编号)'**，这样在 github 体验更好
+## docs 类型提交
 ```bash
 # 修改 README.md
 git add . # 添加到 git
@@ -57,16 +97,59 @@ Date:   Thu Oct 14 07:17:31 2021 +0800
     docs(readme): update readme.md, add init project description
 ```
 
-### fix 类型提交
+## fix 类型提交
 在 github 仓库提交一个 issue，看是否提交 fix 时，可以关联这个 issue
 
-创建一个 issue [fix 类型提交关联 issue 测试 #1](https://github.com/zuoxiaobai/comitizen-practice-demo/issues/1)
+创建一个 issue [fix type 提交类型关联测试 2](https://github.com/zuoxiaobai/comitizen-practice-demo/issues/2)
 
-### feat 类型提交
-新增一个特性
 ```bash
-feat(test): test feat type commit
+git cz
+cz-cli@4.2.4, cz-conventional-changelog@3.2.0
+
+# ? Select the type of change that you're committing: fix:      A bug fix
+# ? What is the scope of this change (e.g. component or file name): (press enter to skip) tests
+# ? Write a short, imperative tense description of the change (max 88 chars):
+#  (17) update tests (#2)
+# ? Provide a longer description of the change: (press enter to skip)
+ 
+# ? Are there any breaking changes? No
+# ? Does this change affect any open issues? No
+# [main 821cd42] fix(tests): update tests (#2)
+#  1 file changed, 2 insertions(+)
+
+#  fix(tests): update tests (#2)
 ```
+
+![fix_type_issue](./docImages/fix_type_issue.png)
+
+提交时选择是否影响了 open 状态的 issue，如果选择了，github 会自动关闭该 issue
+```bash
+zuo@zmac comitizen-practice-demo % git cz
+cz-cli@4.2.4, cz-conventional-changelog@3.2.0
+
+# ? Select the type of change that you're committing: fix:      A bug fix
+# ? What is the scope of this change (e.g. component or file name): (press enter to skip) public
+# ? Write a short, imperative tense description of the change (max 87 chars):
+#  (28) auto close github issue test
+# ? Provide a longer description of the change: (press enter to skip)
+ 
+# ? Are there any breaking changes? No
+# ? Does this change affect any open issues? Yes
+# ? If issues are closed, the commit requires a body. Please enter a longer description of the commit itself:
+#  try to fix issue 2, just a msg
+# ? Add issue references (e.g. "fix #123", "re #123".):
+#  fix #2
+# [main 146e7b9] fix(public): auto close github issue test
+#  1 file changed, 1 insertion(+)
+# zuo@zmac comitizen-practice-demo % 
+```
+注意：如果 commit 信息里面后面不加 (#issue编号)，git commit 表面是看不出来的，只有点击去才行
+
+![fix_close_issue.png](./docImages/fix_close_issue.png)
+
+该提交会关闭 #2 issue，注意 issue 详情里会自动关联 commit 信息中有 #issue 编号的提交，如下图，
+
+![fix_close_issue_2.png](./docImages/fix_close_issue_2.png)
 
 ## husky + commitlint 提交校验
 [commitlint](https://github.com/conventional-changelog/commitlint) 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
