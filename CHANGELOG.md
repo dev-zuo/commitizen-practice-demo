@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v2.3.0...v2.4.0) (2021-10-16)
+
+
+### Features
+
+* **docs:** update README.md ([231361e](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/231361ecc3248d8f081b3ad710b863a24f3f95fd))
+
+
+### Bug Fixes
+
+* **public:** auto close github issue test ([146e7b9](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/146e7b989909cc0fd7e5c0d85dc8a246e8bc9c95)), closes [#2](https://github.com/zuoxiaobai/comitizen-practice-demo/issues/2)
+* **tests:** update tests ([#2](https://github.com/zuoxiaobai/comitizen-practice-demo/issues/2)) ([821cd42](https://github.com/zuoxiaobai/comitizen-practice-demo/commit/821cd42a4eb483daba032c7d87bc353845d3021e))
+
 ## [2.3.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v2.2.0...v2.3.0) (2021-10-16)
 
 
