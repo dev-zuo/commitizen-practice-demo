@@ -1,5 +1,8 @@
 # comitizen-practice-demo
-Vue 项目 commitizen + husky, git commit 提交信息规范校验 demo
+Vue 项目 commitizen + husky + commitlint，git commit 提交信息规范校验 demo
+
+- `commitizen`：使用 git cz 代替 git commit，引导用户填写规范的 commit 信息
+- `husky + commitlint`：git commit 动作时，校验 commit 信息，如果不满足 commitizen 规范，无法提交
 
 ## 初始化项目
 ```bash
@@ -8,7 +11,25 @@ vue create comitizen-practice-demo
 # [Vue 3] typescript, router, vuex, eslint, unit-mocha) 
 ```
 
-## commitizen 提交测试
+## commitizen 使用
+```bash
+npm install -g commitizen cz-conventional-changelog  # 安装规范化提交插件
+echo '{"path": "cz-conventional-changelog"}' > ~/.czrc # 配置
+git cz 
+# ? Select the type of change that you're committing: (Use arrow keys)
+# ❯ feat:     A new feature 
+#   fix:      A bug fix 
+#   docs:     Documentation only changes 
+#   style:    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc) 
+#   refactor: A code change that neither fixes a bug nor adds a feature 
+#   perf:     A code change that improves performance 
+#   test:     Adding missing tests or correcting existing tests 
+#   build:    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm) 
+#   ci:       Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs) 
+#   chore:    Other changes that don't modify src or test files 
+#   revert:   Reverts a previous commit 
+```
+
 ### docs 类型提交
 ```bash
 # 修改 README.md
@@ -48,7 +69,7 @@ feat(test): test feat type commit
 ```
 
 ## husky + commitlint 提交校验
-commitlint[https://github.com/conventional-changelog/commitlint] 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
+[commitlint](https://github.com/conventional-changelog/commitlint) 结合 husky 可以在 git commit 时校验 commit 信息是否符合规范
 
 ### husk 安装
 1. 安装 husky
@@ -97,8 +118,9 @@ zuo@zmac comitizen-practice-demo % git commit -m 'xxx'
 # zuo@zmac comitizen-practice-demo % 
 ```
 提示缺少 subject 就是提交信息、type 就是提交类型，按照规范提交就 ok 了
-
-## changelog 自动生成
+## 根据 commit 信息生成 changelog
+### 手动生成 changelog(不推荐)
+注意：该方法结合 npm version 时，生成会有问题，建议使用后面的 standard-version 自动生成，自动 tag，自动 commit
 ```
 $ npm install -g conventional-changelog-cli
 $ cd my-project
@@ -125,7 +147,7 @@ Date:   Fri Oct 15 06:58:20 2021 +0800
 # 再次生成 changelog 又不行了，空白
 ```
 
-## 使用 standard-version 
+### standard-version（自动生成、打tag） 
 上面的例子中，npm run version 更新版本号会直接提交，导致且 commit 信息就是版本号，不符合 commitizen 规范。导致手动生成 log 时，会是空白。[standard-version](https://github.com/conventional-changelog/standard-version) 就很好的解决了这个问题。安装后，只需要 npm run release，就可以有 npm run version 的功能，而且提交信息是标准的 commitizen 规范，而且自动生成 changelog 自动打 tag，自动 commit。你只需要 push 即可。
 ```bash
 npm install standard-version --save-dev
@@ -154,7 +176,7 @@ zuo@zmac comitizen-practice-demo %
 # git push --tags
 ```
 
-需要注意的是，CHANGELOG.md 是追加写入内容的，如果你之前没有对应的内容或删了之前的内容，会导致生成的内容较少，或者不完整。
+需要注意的是：**CHANGELOG.md 是追加写入内容的，如果你之前没有对应的内容或删了之前的内容，会导致生成的内容较少，或者不完整。**
 
 ### release 特定版本
 ```bash
@@ -180,8 +202,10 @@ npm run release -- --release-as 2.1.3-alpha.1 # 2.0.0-0 to 2.1.3-alpha.1
 
 npm run release # 2.1.3-alpha.1 to 2.2.0
 ```
-The newversion argument should be a valid semver string, a valid second argument to [semver.inc](https://github.com/npm/node-semver#functions) (one of patch, minor, major, prepatch, preminor, premajor,
-## Project setup
+对于版本号信息，参考 [npm version](https://docs.npmjs.com/cli/v7/commands/npm-version) 文档:
+
+> The newversion argument should be a valid semver string, a valid second argument to [semver.inc](https://github.com/npm/node-semver#functions) (one of patch, minor, major, prepatch, preminor, premajor,
+## Project setup(@vue/cli生成，请忽略)
 ```
 npm install
 ```
