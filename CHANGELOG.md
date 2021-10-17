@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/zuoxiaobai/commitizen-practice-demo/compare/v2.4.0...v2.5.0) (2021-10-17)
+
+
+### Features
+
+* **docs:** update readme ([a642856](https://github.com/zuoxiaobai/commitizen-practice-demo/commit/a6428565896bd65cc1af4ebcb35ccf2d6f26afbf))
+
+
+### Bug Fixes
+
+* **test:** test commit ([7f42df0](https://github.com/zuoxiaobai/commitizen-practice-demo/commit/7f42df06986e230e301bc1cf2a2ce1b53e77efe7))
+
 ## [2.4.0](https://github.com/zuoxiaobai/comitizen-practice-demo/compare/v2.3.0...v2.4.0) (2021-10-16)
 
 
