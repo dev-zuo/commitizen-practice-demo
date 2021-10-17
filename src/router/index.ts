@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
 
+// test comit
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
